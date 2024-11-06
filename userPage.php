@@ -7,6 +7,7 @@
     $user_data = check_login($con);
     
     $username = $user_data["user_name"];
+    $encPwd = decData($user_data["password"], 'ENCKEY');
 ?>
 
 <html>
@@ -51,7 +52,7 @@
                 </ul>
             </div>
         </nav><br><br><br>
-        <h1>This is the index page</h1>
+        <h1>This is the index page<br>Current password:<?echo $encPwd?></h1>
 
         <br>
     </body>

@@ -16,6 +16,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
 
+    <style> 
+        .table-div { 
+            display: none; /* Hide the div by default */ 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            margin-top: 10px; 
+        } 
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        } 
+        th, td { 
+            border: 1px solid #000; 
+            padding: 8px; 
+            text-align: left; 
+        } 
+    </style>
+
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"><br>
             <div class="container-fluid">
@@ -25,20 +43,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="adminPanel.php">Home</a>
+                        <a class="nav-link active" href="#" id="home"">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="adminUserView.php">Users</a>
+                        <a class="nav-link" href="#" id="toggleLink">Users</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Option3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Option4</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Option5</a>
-                    </li>
+        
                 </ul>
                 <ul class="navbar-nav" style="padding-right:70px;">
                     <li class="nav-item dropdown">
@@ -52,20 +62,48 @@
             </div>
         </nav><br><br><br>
         <h1>This is the index page</h1>
-
+        <div class="table-div" id="myTable"> 
+            <table> 
+                <thead> 
+                    <tr> 
+                        <th>Header 1</th> 
+                        <th>Header 2</th> 
+                        <th>Header 3</th> 
+                    </tr> 
+                </thead> 
+                <tbody> 
+                    <tr> 
+                        <td>Row 1 Col 1</td> 
+                        <td>Row 1 Col 2</td> 
+                        <td>Row 1 Col 3</td> 
+                    </tr> 
+                    <tr> 
+                        <td>Row 2 Col 1</td> 
+                        <td>Row 2 Col 2</td> 
+                        <td>Row 2 Col 3</td> 
+                    </tr> 
+                </tbody> 
+            </table> 
+        </div> 
         <br>
     </body>
 
-    <!-- Tab Panes -->
-     <div class="tab-content">
-        <div class="tab-pane container active" id="home">
-
-        </div>
-        <div class="tab-pane container fade" id="menu1">
-            
-        </div>
-        <div class="tab-pane container fade" id="menu2">
-            
-        </div>
-     </div>
+    <script> 
+        const toggleLink = document.getElementById('toggleLink'); 
+        const myTable = document.getElementById('myTable');
+        const hideTable = document.getElementById('home');
+    
+        toggleLink.addEventListener('click', function(event) { 
+            event.preventDefault(); // Prevent the default link behavior 
+            if (myTable.style.display === 'none' || myTable.style.display === '') { 
+                myTable.style.display = 'block'; // Show the table 
+            }
+        });
+        hideTable.addEventListener('click', function(event) { 
+            event.preventDefault(); // Prevent the default link behavior 
+            if (myTable.style.display === 'block') { 
+                myTable.style.display = 'none'; // Show the table 
+            }
+        }); 
+    </script>
 </html>

@@ -10,7 +10,7 @@ session_start();
 
         //checks to see ig username and password field is empty and not numeric
         if(!empty ($user_name) && !empty($password) && !is_numeric($user_name)){  //if requirements are true build a query to read from database
-            $query = "select * from users where user_name = '$user_name' limit 1"; //building the sql query
+            $query = "select * from users where user_name = '$user_name' limit 1"; //building the sql query 
             
             $result = mysqli_query($con, $query); //storing sql query into results variable
 
@@ -51,7 +51,8 @@ session_start();
 
                 <input type="submit" value="login"><br><br>
 
-                <a href="signup.php">Sign Up Today!</a>
+                <a href="signup.php">Sign Up Today!</a><br>
+                <a href ="changePwd.php">Forgot Password?</a>
             </form>
         </div>
     </body>
