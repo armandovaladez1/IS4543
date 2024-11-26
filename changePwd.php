@@ -26,8 +26,8 @@ include "functions.php";
 
                                 mysqli_query($con, $update);
                                 echo 'UPDATE COMPLETE';
-                            }
-                        }
+                            }else{echo 'Incorrect old password';}
+                        }else{echo 'User not found';}
                     }
             }else{echo 'Passwords dont match';}
         }else{echo 'Please enter the information';}

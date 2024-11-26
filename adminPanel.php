@@ -7,6 +7,9 @@
     $user_data = check_login($con);
     
     $username = $user_data["user_name"];
+
+    $query = "select * from users";
+    $result = mysqli_query($con,$query);
 ?>
 
 <html>
@@ -22,16 +25,7 @@
             border: 1px solid #ccc; 
             padding: 10px; 
             margin-top: 10px; 
-        } 
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-        } 
-        th, td { 
-            border: 1px solid #000; 
-            padding: 8px; 
-            text-align: left; 
-        } 
+        }  
     </style>
 
     <body>
@@ -61,30 +55,51 @@
                 </ul>
             </div>
         </nav><br><br><br>
-        <h1>This is the index page</h1>
-        <div class="table-div" id="myTable"> 
-            <table> 
-                <thead> 
-                    <tr> 
-                        <th>Header 1</th> 
-                        <th>Header 2</th> 
-                        <th>Header 3</th> 
-                    </tr> 
-                </thead> 
-                <tbody> 
-                    <tr> 
-                        <td>Row 1 Col 1</td> 
-                        <td>Row 1 Col 2</td> 
-                        <td>Row 1 Col 3</td> 
-                    </tr> 
-                    <tr> 
-                        <td>Row 2 Col 1</td> 
-                        <td>Row 2 Col 2</td> 
-                        <td>Row 2 Col 3</td> 
-                    </tr> 
-                </tbody> 
-            </table> 
-        </div> 
+        <div class="table-div" id="myTable">
+        <h1 class="text-center">Users</h1>
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-body">
+                        <table class="table text-center">
+                            <tr class="thead-dark text-white">
+                                <td>User ID</td>
+                                <td>User Name</td>
+                                <td>Password</td>
+                                <td>User Permissions</td>
+                            </tr>
+                            <tr>
+                            <?php
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+                            ?>
+                                <td><?php echo $row['user_id'] ?></td>
+                                <td><?php echo $row['user_name'] ?></td>
+                                <td><?php echo $row['password'] ?></td>
+                                <td><?php echo $row['user_type'] ?></td>
+                            </tr>
+                            <?php
+                                }
+
+                            ?>
+                        </table>
+                    </div>
+                </div>
+                <label>Change User permissions:</label>
+                <div>
+                    <form action="chmod.php" method="post">
+                        <input type="text" name="user_name" placeholder="Username">
+                        <select name="userType" id="userType">
+                            <option value="admin">admin</option>
+                            <option value="user">user</option>
+                        </select>
+                        <button type="submit" name="submit" class="btn btn-success">Save Changes!</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
         <br>
     </body>
 
